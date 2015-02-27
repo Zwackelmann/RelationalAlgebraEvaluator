@@ -1,0 +1,27 @@
+@(createRelationForm: Form[(String, String)], relationContentMaxLength: Int)
+
+@import helper._
+
+@main(title = "Relation hinzufügen") {
+  <h1>Relation hinzufügen</h1>
+  @helper.form(routes.Application.postRelation) {
+    @createRelationForm.globalError.map { error =>
+      <p class="error">
+          @error.message
+      </p>
+    }
+
+    <p>
+      <input type="name" name="relation_name" placeholder="Name der Relation" id="relatin_name" value="@createRelationForm.data.getOrElse("relation_name", "")">
+    </p>
+    <p>
+      <textarea name="relation_content" id="relation_content" placeholder="Inhalt der Relation" maxlength="@relationContentMaxLength" rows="30" cols="100">@createRelationForm.data.getOrElse("relation_content", "")</textarea>
+    </p>
+    <p>
+      <button type="submit">Erstellen</button>
+    </p>
+  }
+} {
+  
+}
+

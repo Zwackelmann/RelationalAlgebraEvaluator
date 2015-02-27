@@ -1,0 +1,36 @@
+@(form: Form[(String,String)])
+
+<html>
+    <head>
+        <title>Relationale Algebra Parser</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+    </head>
+    <body>        
+        @helper.form(routes.Application.authenticate) {
+            
+            <h1>Einloggen</h1>
+            
+            @form.globalError.map { error =>
+                <p class="error">
+                    @error.message
+                </p>
+            }
+            
+            <p>
+                <input type="name" name="name" placeholder="Name" id="name" value="@form("name").value">
+            </p>
+            <p>
+                <input type="password" name="password" id="password" placeholder="Password">
+            </p>
+            <p>
+                <button type="submit" id="loginbutton">Login</button>
+            </p>
+            
+        }
+            
+    </body>
+</html>
+    
+
+

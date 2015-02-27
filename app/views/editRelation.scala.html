@@ -1,0 +1,28 @@
+@(updateRelationForm: Form[String], relationName: String, relationContentMaxLength: Int)
+
+@import helper._
+
+@main(title = "Relation ändern") {
+  <h1>Relation ändern</h1>
+  @helper.form(routes.Application.updateRelation(relationName)) {
+    @updateRelationForm.globalError.map { error =>
+      <p class="error">
+          @error.message
+      </p>
+    }
+    <p>
+      <textarea name="relation_content" id="relation_content" placeholder="Inhalt der Relation" maxlength="@relationContentMaxLength" rows="30" cols="100">@updateRelationForm.data.getOrElse("relation_content", "")</textarea>
+    </p>
+    <p>
+      <button type="submit">Relation ändern</button>
+    </p>
+  }
+
+  @helper.form(routes.Application.deleteRelation(relationName)) {
+    <p>
+      <button type="submit">Relation löschen</button>
+    </p>
+  }
+} {
+  
+}
